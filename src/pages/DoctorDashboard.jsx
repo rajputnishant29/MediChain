@@ -123,5 +123,4 @@ function DoctorDashboard() {
     </div>
   );
 }
-
 export default DoctorDashboard;
