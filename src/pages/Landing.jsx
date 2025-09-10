@@ -2,8 +2,11 @@ import { motion } from "framer-motion";
 import { ShieldCheck, Stethoscope, Database } from "lucide-react";
 import doctorImg from "../assets/doctot.png";
 import bg from "../assets/Blockchain-1.jpg"; 
+import { useNavigate } from "react-router-dom";
 
 function Landing() {
+  const navigate = useNavigate();
+
   return (
     <div
       className="p-8 space-y-20 min-h-screen bg-cover bg-center bg-no-repeat"
@@ -23,47 +26,25 @@ function Landing() {
           </p>
         </motion.div>
 
-        {/* Blockchain + Doctor */}
-        {/* <div className="flex justify-between items-center flex-wrap md:flex-nowrap">
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.5 }}
-            className="flex justify-center mt-10 flex-1"
+        {/* Buttons for Doctor & Patient Login */}
+        <div className="flex justify-center gap-6 mt-6 flex-wrap">
+          <button
+            onClick={() => navigate("/dlogin")}
+            className="px-6 py-3 bg-blue-500 border-2 border-black-400 hover:bg-blue-600 text-white font-bold rounded-xl shadow-md"
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="w-36 h-36 md:w-48 md:h-48 text-blue-400"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              strokeWidth={1.2}
-            >
-              <path d="M7 9l-4 2v2l4 2m10-6l4 2v2l-4 2M12 3v4m0 10v4m-5-6h10" />
-            </svg>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.7, duration: 0.6 }}
-            className="flex justify-center mt-8 flex-1"
+            Logged in as Doctor
+          </button>
+          <button
+            onClick={() => navigate("/plogin")}
+            className="px-6 py-3 bg-green-500 border-2 border-blacky-400 hover:bg-green-600 text-white font-bold rounded-xl shadow-md"
           >
-            <img
-              src={doctorImg}
-              alt="Doctor illustration"
-              className="w-40 md:w-60 lg:w-[20rem] rounded-xl shadow-lg"
-            />
-          </motion.div>
-        </div> */}
-
-        <button className="mt-6 px-6 py-3 bg-black/70 text-white font-bold rounded-xl shadow-md border-1">
-          Get Started
-        </button>
+            Logged in as Patient
+          </button>
+        </div>
       </section>
 
       {/* What is MediChain */}
-      <section className="max-w-4xl mx-auto text-center bg-black/50 p-8 rounded-2xl shadow-lg">
+      <section className="max-w-4xl mx-auto text-center bg-black/80 p-8 rounded-2xl shadow-lg">
         <motion.h2
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -81,7 +62,7 @@ function Landing() {
           className="text-gray-200 mt-4 leading-relaxed"
         >
           MediChain is a <span className="text-blue-400 font-medium">blockchain-based healthcare data platform </span> 
-        that puts patients at the center of their health journey. 
+          that puts patients at the center of their health journey. 
           Instead of hospitals and labs owning the records, patients hold 
           the keys to their own information. This ensures <span className="text-green-400">privacy</span>, 
           <span className="text-yellow-400"> transparency</span>, and <span className="text-pink-400"> seamless access</span> to medical records anytime, anywhere.
@@ -128,3 +109,4 @@ function Landing() {
 }
 
 export default Landing;
+
