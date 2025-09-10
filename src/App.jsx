@@ -4,6 +4,8 @@ import Footer from "./components/Footer";
 import Landing from "./pages/Landing";
 import PatientDashboard from "./pages/PatientDashboard";
 import DoctorDashboard from "./pages/DoctorDashboard";
+import UploadNewRecord from "./pages/UploadNewRecord";
+import ShareToDoctor from "./pages/ShareToDoctor";
 import Psignup from "./pages/Psignup";
 import Dsignup from "./pages/Dsignup";
 import Plogin from "./pages/Plogin";
@@ -21,6 +23,9 @@ function App() {
           <Route path="/" element={<Landing />} />
           <Route path="/patient" element={<PatientDashboard />} />
           <Route path="/doctor" element={<DoctorDashboard />} />
+          <Route path="/upload-record" element={<UploadNewRecord/>} />
+          <Route path="/share-to-doctor" element={<ShareToDoctor/>} />
+
         </Routes>
       </main>
       <Footer />
