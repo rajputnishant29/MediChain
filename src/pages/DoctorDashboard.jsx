@@ -1,20 +1,34 @@
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import {
   User,
-  Mail,
-  Phone,
-  Calendar,
-  MapPin,
-  GraduationCap,
-  Stethoscope,
-  FileText,
-  Building2,
-  Shield,
   Search,
+  FileText,
 } from "lucide-react";
 
 function DoctorDashboard() {
+  const [patientId, setPatientId] = useState("");
+  const [records, setRecords] = useState([
+    { id: 1, name: "Blood Test", status: "granted" },
+    { id: 2, name: "MRI Scan", status: "pending" },
+  ]);
+
+  const handleRequestAccess = () => {
+    if (!patientId.trim()) {
+      alert("⚠️ Please enter a Patient ID.");
+      return;
+    }
+
+    // Simulate adding a new access request
+    setRecords([
+      ...records,
+      { id: Date.now(), name: `Records for ${patientId}`, status: "pending" },
+    ]);
+
+    alert(`✅ Access request sent for Patient ID: ${patientId}`);
+    setPatientId("");
+  };
+
   return (
     <div className="p-8 space-y-10">
       {/* Title */}
@@ -40,39 +54,17 @@ function DoctorDashboard() {
         </div>
 
         <div className="grid md:grid-cols-2 gap-4 text-gray-300">
-          <p>
-            <span className="font-semibold">Full Name:</span> Dr. Arjun Mehta
-          </p>
-          <p>
-            <span className="font-semibold">Email:</span> arjun.mehta@hospital.com
-          </p>
-          <p>
-            <span className="font-semibold">Phone:</span> +91 9876543210
-          </p>
-          <p>
-            <span className="font-semibold">Date of Birth:</span> 10 Mar 1980
-          </p>
-          <p>
-            <span className="font-semibold">Gender:</span> Male
-          </p>
-          <p>
-            <span className="font-semibold">Address:</span> 45 MG Road, Delhi, India
-          </p>
-          <p>
-            <span className="font-semibold">Qualifications:</span> MBBS, MD (Cardiology)
-          </p>
-          <p>
-            <span className="font-semibold">Specialization:</span> Cardiologist
-          </p>
-          <p>
-            <span className="font-semibold">Medical License #:</span> DL-2025-4567
-          </p>
-          <p>
-            <span className="font-semibold">Hospital/Clinic:</span> AIIMS Delhi
-          </p>
-          <p>
-            <span className="font-semibold">Health ID:</span> DOC-2025-001
-          </p>
+          <p><span className="font-semibold">Full Name:</span> Dr. Arjun Mehta</p>
+          <p><span className="font-semibold">Email:</span> arjun.mehta@hospital.com</p>
+          <p><span className="font-semibold">Phone:</span> +91 9876543210</p>
+          <p><span className="font-semibold">Date of Birth:</span> 10 Mar 1980</p>
+          <p><span className="font-semibold">Gender:</span> Male</p>
+          <p><span className="font-semibold">Address:</span> 45 MG Road, Delhi, India</p>
+          <p><span className="font-semibold">Qualifications:</span> MBBS, MD (Cardiology)</p>
+          <p><span className="font-semibold">Specialization:</span> Cardiologist</p>
+          <p><span className="font-semibold">Medical License #:</span> DL-2025-4567</p>
+          <p><span className="font-semibold">Hospital/Clinic:</span> AIIMS Delhi</p>
+          <p><span className="font-semibold">Health ID:</span> DOC-2025-001</p>
         </div>
       </motion.div>
 
@@ -89,10 +81,15 @@ function DoctorDashboard() {
         </div>
         <input
           type="text"
+          value={patientId}
+          onChange={(e) => setPatientId(e.target.value)}
           placeholder="Enter Patient ID"
           className="mt-2 w-full p-3 rounded-lg bg-[#0b1220] text-white outline-none"
         />
-        <button className="mt-4 px-5 py-2 bg-blue-500 rounded-lg hover:bg-blue-600 shadow-md">
+        <button
+          onClick={handleRequestAccess}
+          className="mt-4 px-5 py-2 bg-blue-500 rounded-lg hover:bg-blue-600 shadow-md"
+        >
           Request Access
         </button>
       </motion.div>
@@ -110,17 +107,23 @@ function DoctorDashboard() {
         </div>
 
         <ul className="mt-4 space-y-3">
-          <li className="bg-[#0b1220] p-3 rounded-lg flex justify-between items-center">
-            Blood Test – Access Granted
-            <span className="text-green-400 text-sm">View</span>
-          </li>
-          <li className="bg-[#0b1220] p-3 rounded-lg flex justify-between items-center">
-            MRI Scan – Pending Access
-            <span className="text-yellow-400 text-sm">Waiting</span>
-          </li>
+          {records.map((record) => (
+            <li
+              key={record.id}
+              className="bg-[#0b1220] p-3 rounded-lg flex justify-between items-center"
+            >
+              {record.name} –{" "}
+              {record.status === "granted" ? (
+                <span className="text-green-400 text-sm">View</span>
+              ) : (
+                <span className="text-yellow-400 text-sm">Waiting</span>
+              )}
+            </li>
+          ))}
         </ul>
       </motion.div>
     </div>
   );
 }
+
 export default DoctorDashboard;
