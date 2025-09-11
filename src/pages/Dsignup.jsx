@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+
 function Dsignup() {
-      const navigate = useNavigate();
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -38,243 +39,67 @@ function Dsignup() {
   };
 
   return (
-    <div className="p-8 space-y-8 bg-[#0b1220] min-h-screen text-white">
-      <h1 className="text-3xl font-bold text-blue-400">Doctor Signup</h1>
+    <div className="bg-[#0b1220] min-h-screen flex items-center justify-center p-6">
+      <div className="bg-[#121a2b] p-8 rounded-2xl shadow-2xl w-full max-w-3xl border border-gray-800">
+        {/* Header */}
+        <div className="text-center mb-10">
+          <h1 className="text-4xl font-extrabold">
+            Doctor Signup
+          </h1>
+          <p className="text-gray-400 text-sm mt-2">
+            Please fill in your details to create a <span className="text-blue-400 font-semibold">MediChain</span> account.
+          </p>
+        </div>
 
-      <div className="bg-[#121a2b] p-6 rounded-xl shadow-lg max-w-2xl mx-auto">
-        <form onSubmit={handleSubmit} className="space-y-4">
-          {/* Name & Email */}
+        <form onSubmit={handleSubmit} className="space-y-8">
+          {/* Section: Personal Info */}
+          <SectionTitle step="1" title="Personal Information" />
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div>
-              <label className="block text-sm font-semibold mb-1">Full Name</label>
-              <input
-                type="text"
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
-                placeholder="Enter your full name"
-                className="w-full p-3 rounded-lg bg-[#0b1220] text-white border border-gray-700"
-                required
-              />
-            </div>
-
-            <div>
-              <label className="block text-sm font-semibold mb-1">Email</label>
-              <input
-                type="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                placeholder="Enter your email"
-                className="w-full p-3 rounded-lg bg-[#0b1220] text-white border border-gray-700"
-                required
-              />
-            </div>
+            <InputField label="Full Name" type="text" name="name" value={formData.name} onChange={handleChange} placeholder="Enter your full name" />
+            <InputField label="Email" type="email" name="email" value={formData.email} onChange={handleChange} placeholder="Enter your email" />
           </div>
 
-          {/* Password & DOB */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div>
-              <label className="block text-sm font-semibold mb-1">Password</label>
-              <input
-                type="password"
-                name="password"
-                value={formData.password}
-                onChange={handleChange}
-                placeholder="Enter a secure password"
-                className="w-full p-3 rounded-lg bg-[#0b1220] text-white border border-gray-700"
-                required
-              />
-            </div>
-
-            <div>
-              <label className="block text-sm font-semibold mb-1">Date of Birth</label>
-              <input
-                type="date"
-                name="dob"
-                value={formData.dob}
-                onChange={handleChange}
-                className="w-full p-3 rounded-lg bg-[#0b1220] text-white border border-gray-700"
-                required
-              />
-            </div>
+            <InputField label="Password" type="password" name="password" value={formData.password} onChange={handleChange} placeholder="Enter a secure password" />
+            <InputField label="Date of Birth" type="date" name="dob" value={formData.dob} onChange={handleChange} />
           </div>
 
-          {/* Gender & Phone */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div>
-              <label className="block text-sm font-semibold mb-1">Gender</label>
-              <select
-                name="gender"
-                value={formData.gender}
-                onChange={handleChange}
-                className="w-full p-3 rounded-lg bg-[#0b1220] text-white border border-gray-700"
-                required
-              >
-                <option value="">Select Gender</option>
-                <option value="Male">Male</option>
-                <option value="Female">Female</option>
-                <option value="Other">Other</option>
-              </select>
-            </div>
-
-            <div>
-              <label className="block text-sm font-semibold mb-1">Phone Number</label>
-              <input
-                type="tel"
-                name="phone"
-                value={formData.phone}
-                onChange={handleChange}
-                placeholder="+91 9876543210"
-                className="w-full p-3 rounded-lg bg-[#0b1220] text-white border border-gray-700"
-                required
-              />
-            </div>
+            <SelectField label="Gender" name="gender" value={formData.gender} onChange={handleChange} options={["Male", "Female", "Other"]} />
+            <InputField label="Phone Number" type="tel" name="phone" value={formData.phone} onChange={handleChange} placeholder="+91 9876543210" />
           </div>
 
-          {/* Address */}
-          <div>
-            <label className="block text-sm font-semibold mb-1">Street Address</label>
-            <input
-              type="text"
-              name="street"
-              value={formData.street}
-              onChange={handleChange}
-              placeholder="Street, House No."
-              className="w-full p-3 rounded-lg bg-[#0b1220] text-white border border-gray-700"
-              required
-            />
-          </div>
-
+          {/* Section: Address */}
+          <SectionTitle step="2" title="Address Details" />
+          <InputField label="Street Address" type="text" name="street" value={formData.street} onChange={handleChange} placeholder="Street, House No." />
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div>
-              <label className="block text-sm font-semibold mb-1">City</label>
-              <input
-                type="text"
-                name="city"
-                value={formData.city}
-                onChange={handleChange}
-                placeholder="City"
-                className="w-full p-3 rounded-lg bg-[#0b1220] text-white border border-gray-700"
-                required
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-semibold mb-1">State</label>
-              <input
-                type="text"
-                name="state"
-                value={formData.state}
-                onChange={handleChange}
-                placeholder="State"
-                className="w-full p-3 rounded-lg bg-[#0b1220] text-white border border-gray-700"
-                required
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-semibold mb-1">ZIP</label>
-              <input
-                type="text"
-                name="zip"
-                value={formData.zip}
-                onChange={handleChange}
-                placeholder="ZIP Code"
-                className="w-full p-3 rounded-lg bg-[#0b1220] text-white border border-gray-700"
-                required
-              />
-            </div>
+            <InputField label="City" type="text" name="city" value={formData.city} onChange={handleChange} placeholder="City" />
+            <InputField label="State" type="text" name="state" value={formData.state} onChange={handleChange} placeholder="State" />
+            <InputField label="ZIP" type="text" name="zip" value={formData.zip} onChange={handleChange} placeholder="ZIP Code" />
           </div>
+          <InputField label="Country" type="text" name="country" value={formData.country} onChange={handleChange} placeholder="Country" />
 
-          <div>
-            <label className="block text-sm font-semibold mb-1">Country</label>
-            <input
-              type="text"
-              name="country"
-              value={formData.country}
-              onChange={handleChange}
-              placeholder="Country"
-              className="w-full p-3 rounded-lg bg-[#0b1220] text-white border border-gray-700"
-              required
-            />
-          </div>
-
-          {/* Qualifications & Specialization */}
+          {/* Section: Professional */}
+          <SectionTitle step="3" title="Professional Details" />
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div>
-              <label className="block text-sm font-semibold mb-1">Qualifications</label>
-              <input
-                type="text"
-                name="qualifications"
-                value={formData.qualifications}
-                onChange={handleChange}
-                placeholder="e.g. MBBS, MD"
-                className="w-full p-3 rounded-lg bg-[#0b1220] text-white border border-gray-700"
-                required
-              />
-            </div>
-
-            <div>
-              <label className="block text-sm font-semibold mb-1">Specialization</label>
-              <input
-                type="text"
-                name="specialization"
-                value={formData.specialization}
-                onChange={handleChange}
-                placeholder="e.g. Cardiology"
-                className="w-full p-3 rounded-lg bg-[#0b1220] text-white border border-gray-700"
-                required
-              />
-            </div>
+            <InputField label="Qualifications" type="text" name="qualifications" value={formData.qualifications} onChange={handleChange} placeholder="e.g. MBBS, MD" />
+            <InputField label="Specialization" type="text" name="specialization" value={formData.specialization} onChange={handleChange} placeholder="e.g. Cardiology" />
           </div>
 
-          {/* License & Hospital */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div>
-              <label className="block text-sm font-semibold mb-1">Medical License Number</label>
-              <input
-                type="text"
-                name="licenseNumber"
-                value={formData.licenseNumber}
-                onChange={handleChange}
-                placeholder="Enter License Number"
-                className="w-full p-3 rounded-lg bg-[#0b1220] text-white border border-gray-700"
-                required
-              />
-            </div>
-
-            <div>
-              <label className="block text-sm font-semibold mb-1">Hospital/Clinic Name</label>
-              <input
-                type="text"
-                name="hospitalName"
-                value={formData.hospitalName}
-                onChange={handleChange}
-                placeholder="Hospital or Clinic Name"
-                className="w-full p-3 rounded-lg bg-[#0b1220] text-white border border-gray-700"
-                required
-              />
-            </div>
+            <InputField label="Medical License Number" type="text" name="licenseNumber" value={formData.licenseNumber} onChange={handleChange} placeholder="Enter License Number" />
+            <InputField label="Hospital/Clinic Name" type="text" name="hospitalName" value={formData.hospitalName} onChange={handleChange} placeholder="Hospital or Clinic Name" />
           </div>
 
-          {/* Health ID */}
-          <div>
-            <label className="block text-sm font-semibold mb-1">Health ID</label>
-            <input
-              type="text"
-              name="healthID"
-              value={formData.healthID}
-              readOnly
-              className="w-full p-3 rounded-lg bg-[#0b1220] text-white border border-gray-700"
-            />
-          </div>
-          <button 
-          onClick={()=>{
-              navigate("/dlogin");
-          }}
+          <InputField label="Health ID" type="text" name="healthID" value={formData.healthID} readOnly />
+
+          {/* Signup Button */}
+          <button
+            onClick={() => navigate("/dlogin")}
             type="submit"
-            className="w-full mt-4 px-4 py-3 bg-blue-500 rounded-lg hover:bg-blue-600 text-white font-semibold"
+            className="w-full mt-6 px-6 py-3 bg-gradient-to-r from-blue-500 to-blue-600 rounded-lg hover:from-blue-600 hover:to-blue-700 transition-all duration-300 text-white font-semibold shadow-lg"
           >
-            Sign Up
+            Create Account
           </button>
         </form>
       </div>
@@ -282,5 +107,49 @@ function Dsignup() {
   );
 }
 
-export default Dsignup;
+/* 🔹 Reusable Input */
+const InputField = ({ label, ...props }) => (
+  <div>
+    <label className="block text-sm font-medium text-gray-300 mb-1">{label}</label>
+    <input
+      {...props}
+      className="w-full p-3 rounded-lg bg-[#0b1220] text-white border border-gray-700 
+        focus:ring-2 focus:ring-blue-500 outline-none transition-all duration-200"
+      required={!props.readOnly}
+    />
+  </div>
+);
 
+/* 🔹 Reusable Select */
+const SelectField = ({ label, name, value, onChange, options }) => (
+  <div>
+    <label className="block text-sm font-medium text-gray-300 mb-1">{label}</label>
+    <select
+      name={name}
+      value={value}
+      onChange={onChange}
+      className="w-full p-3 rounded-lg bg-[#0b1220] text-white border border-gray-700 
+        focus:ring-2 focus:ring-blue-500 outline-none transition-all duration-200"
+      required
+    >
+      <option value="">Select {label}</option>
+      {options.map((opt) => (
+        <option key={opt} value={opt}>
+          {opt}
+        </option>
+      ))}
+    </select>
+  </div>
+);
+
+/* 🔹 Section Title */
+const SectionTitle = ({ step, title }) => (
+  <h2 className="text-xl font-semibold text-blue-400 mt-8 mb-3 flex items-center gap-2">
+    <span className="bg-blue-500 text-white w-7 h-7 flex items-center justify-center rounded-full text-sm font-bold">
+      {step}
+    </span>
+    {title}
+  </h2>
+);
+
+export default Dsignup;
