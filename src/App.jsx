@@ -10,6 +10,8 @@ import Psignup from "./pages/Psignup";
 import Dsignup from "./pages/Dsignup";
 import Plogin from "./pages/Plogin";
 import Dlogin from "./pages/Dlogin";
+import RecordDetails from "./pages/RecordDetalis";
+import LabReportView from "./pages/Labreportview";
 function App() {
   return (
     <div className="bg-[#0b1220] text-white min-h-screen flex flex-col">
@@ -25,6 +27,8 @@ function App() {
           <Route path="/doctor" element={<DoctorDashboard />} />
           <Route path="/upload-record" element={<UploadNewRecord/>} />
           <Route path="/share-to-doctor" element={<ShareToDoctor/>} />
+           <Route path="/record/:id" element={<RecordDetails />} />
+            <Route path="/lab-report" element={<LabReportView />} />
 
         </Routes>
       </main>
