@@ -7,13 +7,18 @@ function DoctorDashboard() {
   const navigate = useNavigate();
   const [patientId, setPatientId] = useState("");
 
-  // Stateful patient IDs
-  const [patients, setPatients] = useState(["P001", "P002"]);
+  // Stateful patients with their status
+  const [patients, setPatients] = useState([
+    { id: "P001", status: "granted" },
+    { id: "P002", status: "granted" },
+  ]);
 
   const handleRequestAccess = () => {
     if (!patientId) return; // prevent empty input
-    if (!patients.includes(patientId)) {
-      setPatients([...patients, patientId]); // add new patient ID
+    // Check if patient already exists
+    const exists = patients.find((p) => p.id === patientId);
+    if (!exists) {
+      setPatients([...patients, { id: patientId, status: "pending" }]);
     }
     setPatientId(""); // clear input
   };
@@ -106,8 +111,6 @@ function DoctorDashboard() {
           value={patientId}
           onChange={(e) => setPatientId(e.target.value)}
           placeholder="Enter Patient ID"
-          value={patientId}
-          onChange={(e) => setPatientId(e.target.value)}
           className="mt-2 w-full p-3 rounded-lg bg-[#0b1220] text-white outline-none"
         />
         <button
@@ -131,18 +134,22 @@ function DoctorDashboard() {
         </div>
 
         <ul className="mt-4 space-y-3">
-          {patients.map((id) => (
+          {patients.map((p) => (
             <li
-              key={id}
+              key={p.id}
               className="bg-[#0b1220] p-3 rounded-lg flex justify-between items-center"
             >
-              {id}
-              <button
-                onClick={() => navigate(`/record/${id}`)}
-                className="text-green-400 text-sm hover:underline"
-              >
-                View Records
-              </button>
+              {p.id}
+              {p.status === "granted" ? (
+                <button
+                  onClick={() => navigate(`/record/${p.id}`)}
+                  className="text-green-400 text-sm hover:underline"
+                >
+                  View
+                </button>
+              ) : (
+                <span className="text-yellow-400 text-sm">Pending</span>
+              )}
             </li>
           ))}
         </ul>
