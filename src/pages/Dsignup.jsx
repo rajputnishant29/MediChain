@@ -91,7 +91,7 @@ function Dsignup() {
             <InputField label="Hospital/Clinic Name" type="text" name="hospitalName" value={formData.hospitalName} onChange={handleChange} placeholder="Hospital or Clinic Name" />
           </div>
 
-          <InputField label="Health ID" type="text" name="healthID" value={formData.healthID} readOnly />
+          {/* <InputField label="Health ID" type="text" name="healthID" value={formData.healthID} readOnly /> */}
 
           {/* Signup Button */}
           <button

@@ -181,14 +181,6 @@ function Psignup() {
             />
           </div>
 
-          <InputField
-            label="Health ID"
-            type="text"
-            name="healthID"
-            value={formData.healthID}
-            readOnly
-          />
-
           {/* Signup Button */}
           <button
             onClick={() => navigate("/plogin")}

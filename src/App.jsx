@@ -12,6 +12,10 @@ import Plogin from "./pages/Plogin";
 import Dlogin from "./pages/Dlogin";
 import RecordDetails from "./pages/RecordDetalis";
 import LabReportView from "./pages/Labreportview";
+import InsuranceDashboard from "./pages/InsurenceDashboard";
+import LabDashboard from "./pages/LabDashboard";
+import Hlogin from "./pages/Hlogin";
+import Ilogin from "./pages/Ilogin";
 function App() {
   return (
     <div className="bg-[#0b1220] text-white min-h-screen flex flex-col">
@@ -21,6 +25,8 @@ function App() {
             <Route path="/psignup" element={<Psignup />} />
               <Route path="/dsignup" element={<Dsignup />} />
           <Route path="/plogin" element={<Plogin />} />
+          <Route path="/hlogin" element={<Hlogin />} />
+            <Route path="/ilogin" element={<Ilogin />} />
             <Route path="/dlogin" element={<Dlogin />} />
           <Route path="/" element={<Landing />} />
           <Route path="/patient" element={<PatientDashboard />} />
@@ -29,6 +35,8 @@ function App() {
           <Route path="/share-to-doctor" element={<ShareToDoctor/>} />
            <Route path="/record/:id" element={<RecordDetails />} />
             <Route path="/lab-report" element={<LabReportView />} />
+            <Route path="/insurence" element={<InsuranceDashboard />} />
+            <Route path="/lab" element={<LabDashboard/>} />
 
         </Routes>
       </main>
