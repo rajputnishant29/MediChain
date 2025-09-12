@@ -1,33 +1,4 @@
 import React, { useState } from "react";
-// import { motion } from "framer-motion";
-// import {
-//   User,
-//   Search,
-//   FileText,
-// } from "lucide-react";
-
-// function DoctorDashboard() {
-//   const [patientId, setPatientId] = useState("");
-//   const [records, setRecords] = useState([
-//     { id: 1, name: "Blood Test", status: "granted" },
-//     { id: 2, name: "MRI Scan", status: "pending" },
-//   ]);
-
-//   const handleRequestAccess = () => {
-//     if (!patientId.trim()) {
-//       alert("⚠️ Please enter a Patient ID.");
-//       return;
-//     }
-
-//     // Simulate adding a new access request
-//     setRecords([
-//       ...records,
-//       { id: Date.now(), name: `Records for ${patientId}`, status: "pending" },
-//     ]);
-
-//     alert(`✅ Access request sent for Patient ID: ${patientId}`);
-//     setPatientId("");
-=======
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { User, FileText, Search } from "lucide-react";
@@ -86,17 +57,6 @@ function DoctorDashboard() {
           <h2 className="text-2xl font-semibold">{doctor.fullname}</h2>
         </div>
         <div className="grid md:grid-cols-2 gap-4 text-gray-300">
-//           <p><span className="font-semibold">Full Name:</span> Dr. Arjun Mehta</p>
-//           <p><span className="font-semibold">Email:</span> arjun.mehta@hospital.com</p>
-//           <p><span className="font-semibold">Phone:</span> +91 9876543210</p>
-//           <p><span className="font-semibold">Date of Birth:</span> 10 Mar 1980</p>
-//           <p><span className="font-semibold">Gender:</span> Male</p>
-//           <p><span className="font-semibold">Address:</span> 45 MG Road, Delhi, India</p>
-//           <p><span className="font-semibold">Qualifications:</span> MBBS, MD (Cardiology)</p>
-//           <p><span className="font-semibold">Specialization:</span> Cardiologist</p>
-//           <p><span className="font-semibold">Medical License #:</span> DL-2025-4567</p>
-//           <p><span className="font-semibold">Hospital/Clinic:</span> AIIMS Delhi</p>
-//           <p><span className="font-semibold">Health ID:</span> DOC-2025-001</p>
           <p>
             <span className="font-semibold">Email:</span> {doctor.email}
           </p>
